@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 
-* {
+/* * {
   font-family: "Raleway", sans-serif;
-}
+} */
 
 /* .body{
   background-color: #f8f8f8;
@@ -98,9 +98,6 @@
   }
 }
 
-.opened {
-  transform: rotateY(180deg);
-}
 
 .front {
   font-size: 50px;
@@ -114,15 +111,20 @@
   //background: linear-gradient(to top, #FFFFFF, #ECE9E6);
 }
 
+.opened {
+  transform: rotateY(180deg);
+}
+
 .matched {
   transform: rotateY(180deg);
-  .back {
-    box-shadow: 0 0 0 2px rgba(#000,.05) inset;
-    animation: selected .8s 0s ease 1;
-    animation-fill-mode: both;
-    opacity: .2;
-   }
 }
+
+.back {
+  box-shadow: 0 0 0 2px rgba(#000,.05) inset;
+  animation: selected .8s 0s ease 1;
+  animation-fill-mode: both;
+  opacity: .002;
+ }
 
 .div {
   backface-visibility: hidden;
@@ -166,7 +168,7 @@
 
 }
 
-.selected {
+@keyframes  selected {
   0% {
     opacity:.2;
   }
