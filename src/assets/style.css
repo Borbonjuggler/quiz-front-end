@@ -9,11 +9,8 @@
 }
 
 .container {
-  /*position: absolute;*/
-  /* width: 1024px; */
   width: 60%;
-  /*height: 800px;*/
-  border: 1px solid #f4f4f4;  /*Use Hex  6 digits code*/
+  border: 1px solid #f4f4f4;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 10px;
@@ -21,17 +18,14 @@
   top: 0px;
   bottom: 0px;
   left: 0px;
-  /*right: 0px;*/
   margin: auto;
 }
 
 .title {
   position: relative;
-  /*background-color: rgba(0, 0, 0, 1);*/
   color: #000;
   padding: 20px;
   font-size: 2em;
-  /*border-radius: 5px;*/
 }
 
 .question {
@@ -42,12 +36,9 @@
 
 .questionBox {
   position: relative;
-  /*border: 1px solid rgba(0, 0, 0, 0.2);*/
-  /*margin-top: 5px;*/
   padding: 15px 15px;
   box-sizing: border-box;
   background-color: #FFF;
-  /*box-shadow: 0 2px 10px rgba(0,0,0,.05);*/
 }
 
 .answerBtn {
@@ -98,72 +89,28 @@ body {
   font-family: 'Delius', cursive;
 }
 
-#root {
-  padding:35px;
-  width:40%;
-  margin: 20px auto;
-  border-radius: 10px;
-  .playground {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    perspective: 1000px;
-    margin-bottom: -15px;
-    .card {
-      width: 15%;
-      user-select: none;
-      height: 110px;
-      padding: 10px;
-      box-sizing: border-box;
-      text-align: center;
-      margin-bottom:15px;
-	    transition: 0.6s;
-	    transform-style: preserve-3d;
-	    position: relative;
-      div {
-        backface-visibility: hidden;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
-        transition: 0.6s;
-        background: #f4f5f7;
-      }
-      .front {
-        font-size: 50px;
-        line-height: 120px;
-        cursor: pointer;
-        color: darken(#f4f5f7,20%);
-        display:flex;
-        align-items: center;
-        justify-content: center;
-        //background: -webkit-linear-gradient(to top, #FFFFFF, #ECE9E6);
-        //background: linear-gradient(to top, #FFFFFF, #ECE9E6);
-      }
-      .back {
-        transform: rotateY(180deg);
-        line-height: 110px;
-        img {
-          vertical-align: middle;
-          width: 70%;
-        }
-      }
-      &.opened {
-        transform: rotateY(180deg);
-      }
-      &.matched {
-        transform: rotateY(180deg);
-        .back {
-          box-shadow: 0 0 0 2px rgba(#000,.05) inset;
-          animation: selected .8s 0s ease 1;
-          animation-fill-mode: both;
-          opacity: .2;
-         }
-      }
-    }
+.back {
+  transform: rotateY(180deg);
+  line-height: 110px;
+  img {
+    vertical-align: middle;
+    width: 70%;
   }
+}
+.opened {
+  transform: rotateY(180deg);
+}
+
+.front {
+  font-size: 50px;
+  line-height: 120px;
+  cursor: pointer;
+  color: darken(#f4f5f7,20%);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  //background: -webkit-linear-gradient(to top, #FFFFFF, #ECE9E6);
+  //background: linear-gradient(to top, #FFFFFF, #ECE9E6);
 }
 
 @keyframes selected {
@@ -182,4 +129,55 @@ body {
   100% {
     opacity:.3;
   }
+}
+
+.matched {
+  transform: rotateY(180deg);
+  .back {
+    box-shadow: 0 0 0 2px rgba(#000,.05) inset;
+    animation: selected .8s 0s ease 1;
+    animation-fill-mode: both;
+    opacity: .2;
+   }
+}
+
+.div {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transition: 0.6s;
+  background: #f4f5f7;
+}
+.card {
+  width: 15%;
+  user-select: none;
+  height: 110px;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  margin-bottom:15px;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.memgame {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  perspective: 1000px;
+  margin-bottom: -15px;
+
+}
+
+.app {
+  padding:35px;
+  width:40%;
+  margin: 20px auto;
+  border-radius: 10px;
+
 }

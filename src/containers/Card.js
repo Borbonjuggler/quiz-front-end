@@ -12,6 +12,7 @@ class Card extends Component {
     this.props.click(framework)
   }
   render(){
+    // console.log("Card:render: ", this.props.close);
     return (
       <div className={"card" + (!this.props.close ? ' opened' : '') + (this.props.complete ? ' matched' : '')} onClick={() => this.clicked(this.props.framework)}>
         <div className="front">

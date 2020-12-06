@@ -10,4 +10,4 @@ ReactDOM.render(
   // <QuizzBee />,
   <MemGame />,
   // <QuizzBee1 />,
-  document.getElementById('root'));
+  document.getElementById('app'));

@@ -15,6 +15,7 @@ class MemGame extends Component {
     }
 
     handleClick(name,index){
+      console.log("STATE BEFORE: ", this.state);
       if(this.state.openedFrameworks.length === 2){
         setTimeout(() => {
           this.check()
@@ -38,6 +39,7 @@ class MemGame extends Component {
           },750)
         }
       }
+      console.log("STATE AFTER: ", this.state);
     }
     check(){
       let finalizedFrameworks = this.state.finalizedFrameworks
@@ -66,6 +68,7 @@ class MemGame extends Component {
         })
       })
       this.state.finalizedFrameworks = finalizedFrameworks
+      // console.log("STATE: ", this.state);
     }
     shuffle(array){
       let currentIndex = array.length, temporaryValue, randomIndex;
@@ -79,12 +82,13 @@ class MemGame extends Component {
       return array
     }
     render(){
-
+      // console.log("finalizedFrameworks: ", this.state.finalizedFrameworks);
+      // console.log("state: ", this.state.openedFrameworks);
       return (
-        <div className="playground">
+        <div className="memgame">
             {
               this.state.finalizedFrameworks.map((framework, index) => {
-                return <Card framework={framework.name} click={() => {this.handleClick(framework.name,index)}} close={framework.close} complete={framework.complete}/>
+                return <Card key={framework.index} framework={framework.name} click={() => {this.handleClick(framework.name,index)}} close={framework.close} complete={framework.complete}/>
               })
             }
         </div>
