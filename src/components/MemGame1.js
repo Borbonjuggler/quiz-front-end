@@ -38,11 +38,15 @@ class MemGame1 extends Component {
           this.check()
         },750)
       } else {
-        let framework = card
+        let framework = {
+          card,
+          index
+        }
+        console.log(framework)
         let finalizedCards = this.state.finalizedCards
         let frameworks = this.state.openedCards
         finalizedCards[index].close = false
-        finalizedCards[index].side = "front"
+        // finalizedCards[index].side = "front"
 
         frameworks.push(framework)
         this.setState({
@@ -59,11 +63,12 @@ class MemGame1 extends Component {
     }
 
     check(){
+      console.log("Checking: ", this.state.openedCards[0].index, this.state.openedCards[1]);
       let finalizedCards = this.state.finalizedCards
-      if((this.state.openedCards[0].framework === this.state.openedCards[1].framework) && (this.state.openedCards[0].index !== this.state.openedCards[1].index)){
+      if((this.state.openedCards[0].card.name === this.state.openedCards[1].name) && (this.state.openedCards[0].index !== this.state.openedCards[1].index)){
         finalizedCards[this.state.openedCards[0].index].complete = true
         finalizedCards[this.state.openedCards[1].index].complete = true
-      }else {
+      } else {
         finalizedCards[this.state.openedCards[0].index].close = true
         finalizedCards[this.state.openedCards[1].index].close = true
       }
@@ -86,13 +91,22 @@ class MemGame1 extends Component {
         randomizedCards: this.shuffle(this.state.duplicatedCards)
       })
       this.state.randomizedCards.map((name,index) => {
-        finalizedCards.push(
-          name
-          // close: true,
-          // complete: false,
-          // fail: false,
-          // className: "back"
-        )
+        // console.log("WWW: ", name);
+        // name.close = true;
+        // name.complete = false;
+        // name.fail = false;
+        // name.side = "back";
+        // console.log("FFF: ", name);
+        // finalizedCards.push(
+        //   name
+        // )
+        finalizedCards.push({
+          name,
+          close: true,
+          complete: false,
+          fail: false,
+          side: "back"
+        })
       })
 
       this.setState({
