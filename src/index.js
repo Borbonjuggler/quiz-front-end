@@ -9,7 +9,5 @@ import MemGame1 from './components/MemGame1';
 
 
 ReactDOM.render(
-  // <QuizzBee />,
   <MemGame1 />,
-  // <QuizzBee1 />,
-  document.getElementById('app'));
+  document.getElementById('app1'));

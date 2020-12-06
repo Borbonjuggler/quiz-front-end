@@ -9,11 +9,11 @@ class MemGame1 extends Component {
         cardsBank: [],
         score: 0,
         responses: 0,
-        frameworks: ['angular2','vue','react','grunt','phantomjs','ember','babel','ionic','gulp','meteor','yeoman','yarn','nodejs','bower','browserify'],
-        duplicatedFrameworks: [],
-        randomizedFrameworks: [],
-        finalizedFrameworks: [],
-        openedFrameworks: [],
+        // frameworks: ['angular2','vue','react','grunt','phantomjs','ember','babel','ionic','gulp','meteor','yeoman','yarn','nodejs','bower','browserify'],
+        duplicatedCards: [],
+        randomizedCards: [],
+        finalizedCards: [],
+        openedCards: [],
         number: 5
     };
 
@@ -25,69 +25,80 @@ class MemGame1 extends Component {
                 this.start()
             })
             .catch(error => {
-              console.log("ERR",error);
+                console.log("ERR",error);
                 console.log(error);
             });
     };
 
 
-    handleClick(name,index){
-      console.log("STATE BEFORE: ", this.state);
-      if(this.state.openedFrameworks.length === 2){
+    handleClick(card, index){
+      console.log("STATE BEFORE: ", index, this.state);
+      if(this.state.openedCards.length === 2){
         setTimeout(() => {
           this.check()
         },750)
-      }else {
-        let framework = {
-          name,
-          index
-        }
-        let finalizedFrameworks = this.state.finalizedFrameworks
-        let frameworks = this.state.openedFrameworks
-        finalizedFrameworks[index].close = false
+      } else {
+        let framework = card
+        let finalizedCards = this.state.finalizedCards
+        let frameworks = this.state.openedCards
+        finalizedCards[index].close = false
+        finalizedCards[index].side = "front"
+
         frameworks.push(framework)
         this.setState({
-          openedFrameworks: frameworks,
-          finalizedFrameworks: finalizedFrameworks
+          openedCards: frameworks,
+          finalizedCards: finalizedCards
         })
-        if(this.state.openedFrameworks.length === 2){
+        if(this.state.openedCards.length === 2){
           setTimeout(() => {
             this.check()
           },750)
         }
+        console.log("STATE AFTER: ", finalizedCards[index]);
       }
-      console.log("STATE AFTER: ", this.state);
     }
 
     check(){
-      let finalizedFrameworks = this.state.finalizedFrameworks
-      if((this.state.openedFrameworks[0].name === this.state.openedFrameworks[1].name) && (this.state.openedFrameworks[0].index !== this.state.openedFrameworks[1].index)){
-        finalizedFrameworks[this.state.openedFrameworks[0].index].complete = true
-        finalizedFrameworks[this.state.openedFrameworks[1].index].complete = true
+      let finalizedCards = this.state.finalizedCards
+      if((this.state.openedCards[0].framework === this.state.openedCards[1].framework) && (this.state.openedCards[0].index !== this.state.openedCards[1].index)){
+        finalizedCards[this.state.openedCards[0].index].complete = true
+        finalizedCards[this.state.openedCards[1].index].complete = true
       }else {
-        finalizedFrameworks[this.state.openedFrameworks[0].index].close = true
-        finalizedFrameworks[this.state.openedFrameworks[1].index].close = true
+        finalizedCards[this.state.openedCards[0].index].close = true
+        finalizedCards[this.state.openedCards[1].index].close = true
       }
       this.setState({
-        finalizedFrameworks,
-        openedFrameworks: []
+        finalizedCards,
+        openedCards: []
       })
     }
 
     start(){
-      let finalizedFrameworks = [];
-      this.state.duplicatedFrameworks = this.state.frameworks.concat(this.state.frameworks)
-      this.state.randomizedFrameworks = this.shuffle(this.state.duplicatedFrameworks)
-      this.state.randomizedFrameworks.map((name,index) => {
-        finalizedFrameworks.push({
-          name,
-          close: true,
-          complete: false,
-          fail: false
-        })
+
+      let finalizedCards = [];
+      console.log("start: ", this.state.cardsBank.concat(this.state.cardsBank))
+
+      this.setState({
+        duplicatedCards: this.state.cardsBank.concat(this.state.cardsBank)
       })
-      this.state.finalizedFrameworks = finalizedFrameworks
-      // console.log("STATE: ", this.state);
+
+      this.setState({
+        randomizedCards: this.shuffle(this.state.duplicatedCards)
+      })
+      this.state.randomizedCards.map((name,index) => {
+        finalizedCards.push(
+          name
+          // close: true,
+          // complete: false,
+          // fail: false,
+          // className: "back"
+        )
+      })
+
+      this.setState({
+        finalizedCards: finalizedCards
+      })
+
     }
 
     shuffle(array){
@@ -117,12 +128,11 @@ class MemGame1 extends Component {
     }
 
     render() {
-      console.log("cards: ", this.state.cardsBank);
         return (
           <div className="memgame">
               {
-                this.state.cardsBank.map((framework, index) => {
-                  return <Card key={framework.index} framework={framework.name} click={() => {this.handleClick(framework.name,index)}} close={framework.close} complete={framework.complete}/>
+                this.state.finalizedCards.map((framework, index) => {
+                  return <Card key={framework.index} framework={framework} click={() => {this.handleClick(framework.name,index)}} close={framework.close} complete={framework.complete}/>
                 })
               }
           </div>

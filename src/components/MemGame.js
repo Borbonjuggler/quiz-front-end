@@ -70,6 +70,7 @@ class MemGame extends Component {
       this.state.finalizedFrameworks = finalizedFrameworks
       // console.log("STATE: ", this.state);
     }
+
     shuffle(array){
       let currentIndex = array.length, temporaryValue, randomIndex;
       while (0 !== currentIndex) {

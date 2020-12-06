@@ -12,14 +12,11 @@ class Card extends Component {
     this.props.click(framework)
   }
   render(){
-    // console.log("Card:render: ", this.props.close);
+    // console.log("render: ", this.props);
     return (
       <div className={"card" + (!this.props.close ? ' opened' : '') + (this.props.complete ? ' matched' : '')} onClick={() => this.clicked(this.props.framework)}>
-        <div className="front">
-          ?
-        </div>
         <div className={this.props.side}>
-          <img src={"https://raw.githubusercontent.com/samiheikki/javascript-guessing-game/master/static/logos/" + this.props.framework + ".png"} />
+          <img src={!this.props.close ? this.props.framework_img_url: "https://img.icons8.com/color/search"} alt={this.props.framework_img_url}/>
         </div>
       </div>
     )
