@@ -18,7 +18,7 @@ class Card extends Component {
         <div className="front">
           ?
         </div>
-        <div className="back">
+        <div className={this.props.side}>
           <img src={"https://raw.githubusercontent.com/samiheikki/javascript-guessing-game/master/static/logos/" + this.props.framework + ".png"} />
         </div>
       </div>

@@ -89,15 +89,6 @@
   font-family: 'Delius', cursive;
 }
 
-.back {
-  transform: rotateY(180deg);
-  line-height: 110px;
-  img {
-    vertical-align: middle;
-    width: 70%;
-  }
-}
-
 
 .front {
   font-size: 50px;
@@ -107,24 +98,38 @@
   display:flex;
   align-items: center;
   justify-content: center;
+
   //background: -webkit-linear-gradient(to top, #FFFFFF, #ECE9E6);
   //background: linear-gradient(to top, #FFFFFF, #ECE9E6);
-}
 
+  /* &.opened {
+    transform: rotateY(180deg);
+  } */
+}
+.back {
+  transform: rotateY(180deg);
+  line-height: 110px;
+
+  img {
+    vertical-align: middle;
+    width: 70%;
+    opacity: .002;
+  }
+}
 .opened {
   transform: rotateY(180deg);
 }
 
 .matched {
   transform: rotateY(180deg);
+  .back {
+    box-shadow: 0 0 0 2px rgba(#000,.05) inset;
+    /* animation: selected .8s 0s ease 1; */
+    animation-fill-mode: both;
+    opacity: .002;
+   }
 }
 
-.back {
-  box-shadow: 0 0 0 2px rgba(#000,.05) inset;
-  animation: selected .8s 0s ease 1;
-  animation-fill-mode: both;
-  opacity: .002;
- }
 
 .div {
   backface-visibility: hidden;
@@ -136,6 +141,7 @@
   border-radius: 10px;
   transition: 0.6s;
   background: #f4f5f7;
+
 }
 
 .card {
@@ -170,7 +176,7 @@
 
 @keyframes  selected {
   0% {
-    opacity:.2;
+    opacity:.02;
   }
   30% {
     opacity:.5;
