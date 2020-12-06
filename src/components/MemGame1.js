@@ -68,9 +68,13 @@ class MemGame1 extends Component {
       if((this.state.openedCards[0].card.name === this.state.openedCards[1].name) && (this.state.openedCards[0].index !== this.state.openedCards[1].index)){
         finalizedCards[this.state.openedCards[0].index].complete = true
         finalizedCards[this.state.openedCards[1].index].complete = true
+        // finalizedCards[this.state.openedCards[1].index].side = "front"
+        // finalizedCards[this.state.openedCards[0].index].side = "front"
       } else {
         finalizedCards[this.state.openedCards[0].index].close = true
         finalizedCards[this.state.openedCards[1].index].close = true
+          // finalizedCards[this.state.openedCards[1].index].side = "front"
+          // finalizedCards[this.state.openedCards[0].index].side = "front"
       }
       this.setState({
         finalizedCards,
@@ -91,15 +95,7 @@ class MemGame1 extends Component {
         randomizedCards: this.shuffle(this.state.duplicatedCards)
       })
       this.state.randomizedCards.map((name,index) => {
-        // console.log("WWW: ", name);
-        // name.close = true;
-        // name.complete = false;
-        // name.fail = false;
-        // name.side = "back";
-        // console.log("FFF: ", name);
-        // finalizedCards.push(
-        //   name
-        // )
+
         finalizedCards.push({
           name,
           close: true,
